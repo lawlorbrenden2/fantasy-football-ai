@@ -1,0 +1,12 @@
+# --- Data Manipulation & Math Engine ---
+pandas==2.2.0
+numpy==1.26.4
+pulp==2.8.0
+
+# --- Configuration & Validation ---
+pydantic==2.8.2
+pyyaml==6.0.1
+
+# --- (Future-Proofing for Web UI/API) ---
+# fastapi==0.112.0
+# uvicorn==0.30.5
