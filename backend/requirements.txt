@@ -7,3 +7,6 @@ pulp
 pydantic
 pyyaml
 pytest
+
+# --- Data sourced by nflverse ---
+nflreadpy
