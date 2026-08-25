@@ -28,8 +28,8 @@ def run_league_wizard() -> Path:
     te = int(input("Enter number of starting TEs (default 1): ") or 1)
     flex = int(input("Enter number of starting flex players (default 1): ") or 1)
     dst = int(input("Enter number of starting D/STs (default 1): ") or 1)
-    k = int(input("Enter number of starting Kickers (default 1): ") or 1)
-    bench = int(input("Enter number of bench players (default 6): ") or 7)
+    k = int(input("Enter number of starting kickers (default 1): ") or 1)
+    bench = int(input("Enter number of bench players (default 7): ") or 7)
     ir = int(input("Enter number of potential IR players (default 0): ") or 0)
 
     config = LeagueConfig(
@@ -76,10 +76,18 @@ def run_draft_session():
     homer_team = input("\nEnter favorite NFL team for a rank boost (e.g., DET, SF, KC) or leave blank: ").strip().upper()
     
     # 3. Specific Player Boosts ("My Guys")
-    sleepers_input = input("Enter any potential sleeprs to heavily boost, comma-separated (e.g., Christian McCaffrey, Brock Bowers) or leave blank:\n> ").strip()
+    sleepers_input = input("Enter any potential sleepers to heavily boost, comma-separated (e.g., Christian McCaffrey, Brock Bowers) or leave blank:\n> ").strip()
 
     # 4. Specific Player Penalties ("Busts")
     busts_input = input("Enter any potential busts you'd like to heavily penalize, comma-separated (e.g., Christian McCaffrey, Brock Bowers) or leave blank:\n> ").strip()
+
+    busts_input = input("Enter any potential busts you'd like to heavily avoid, comma-separated:\n> ").strip()
+    
+    # 5. The Stacking Toggle
+    print("\nDo you want to enable Dynamic Stacking?")
+    print("(This automatically boosts QBs/Receivers if you draft their teammates to maximize weekly ceiling.)")
+    stack_input = input("Enable Stacking? (y/n) [Default n]: ").strip().lower()
+    enable_stacking = True if stack_input == 'y' else False
     
     # Convert the comma string into a clean Python list
     if sleepers_input:
@@ -98,8 +106,24 @@ def run_draft_session():
     print(f" - Homer Bias: {homer_team if homer_team else 'None'}")
     print(f" - Sleepers to boost: {', '.join(sleepers) if sleepers else 'None'}")
     print(f" - Busts to avoid: {', '.join(busts) if busts else 'None'}")
+    print(f" - Dynamic Stacking: {'ON' if enable_stacking else 'OFF'}")
     print("\nEntering the War Room...")
     
-    # We will pass these variables into calculator.py right here!
+    league_config = load_league_config(selected_league_path)
+    bias_settings = BiasSettings(
+        strategy=strategy_choice,
+        homer_team=homer_team,
+        sleepers=sleepers,
+        busts=busts
+    )
+    
+    # 2. Run the math engine
+    draft_board = calculate_vorp(league_config, bias_settings)
+    
+    # 3. Display the optimized results
+    print("\n --- TOP 20 DRAFT BOARD --- ")
+    columns_to_show = ['player', 'pos', 'team', 'ecr', 'adjusted_ecr', 'vorp_value']
+    print(draft_board[columns_to_show].head(20).to_string(index=False))
     
     input("\nDraft paused. Press Enter to return to main menu...")
+    

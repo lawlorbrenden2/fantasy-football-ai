@@ -30,7 +30,7 @@ def load_league_config(filepath: str) -> LeagueConfig:
         raw_data =  yaml.safe_load(f)
     return LeagueConfig(**raw_data)
 
-def save_league_config(config: LeagueConfig, output_dir: str | Path = 'configs') -> Path:
+def save_league_config(config: LeagueConfig, output_dir: str | Path = 'backend/configs') -> Path:
     output_path = Path(output_dir) / f"{config.league_name.lower().replace(' ', '_')}.yaml"
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
