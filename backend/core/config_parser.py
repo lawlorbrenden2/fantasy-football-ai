@@ -31,7 +31,7 @@ def load_league_config(filepath: str) -> LeagueConfig:
     return LeagueConfig(**raw_data)
 
 def save_league_config(config: LeagueConfig, output_dir: str | Path = 'configs') -> Path:
-    output_path = Path(output_dir) / f"{config.league_name.lower().replace(' ', '_')}.yml"
+    output_path = Path(output_dir) / f"{config.league_name.lower().replace(' ', '_')}.yaml"
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(output_path, 'w') as f:
