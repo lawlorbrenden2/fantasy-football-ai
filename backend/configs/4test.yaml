@@ -1,0 +1,17 @@
+league_name: 4test
+team_count: 6
+scoring:
+  ppr: 0.0
+  pass_td: 4
+  rush_td: 6
+  reception_td: 6
+roster_limits:
+  qb: 2
+  rb: 4
+  wr: 4
+  te: 3
+  flex: 1
+  dst: 5
+  k: 4
+  bench: 3
+  ir: 9

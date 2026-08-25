@@ -2,6 +2,9 @@ import yaml
 from pathlib import Path
 from pydantic import BaseModel
 
+BASE_DIR = Path(__file__).resolve().parent.parent  # Resolves to 'backend/'
+CONFIGS_DIR = BASE_DIR / "configs"
+
 class ScoringSettings(BaseModel):
     ppr: float = 1.0
     pass_td: int = 4
@@ -36,5 +39,4 @@ def save_league_config(config: LeagueConfig, output_dir: str | Path = 'backend/c
 
     with open(output_path, 'w') as f:
         yaml.safe_dump(config.model_dump(), f, sort_keys=False)
-
     return output_path

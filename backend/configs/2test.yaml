@@ -1,0 +1,17 @@
+league_name: 2test
+team_count: 12
+scoring:
+  ppr: 1.0
+  pass_td: 4
+  rush_td: 6
+  reception_td: 6
+roster_limits:
+  qb: 1
+  rb: 2
+  wr: 2
+  te: 1
+  flex: 1
+  dst: 1
+  k: 1
+  bench: 6
+  ir: 0
