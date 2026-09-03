@@ -8,7 +8,7 @@ It is built as a highly decoupled, full-stack **Monorepo** to ensure the mathema
 
 ---
 
-## 🚀 Core Features
+## Core Features
 
 * **Live Draft Optimizer:** Calculates dynamic VORP and baseline replacement scores to adapt to positional scarcity during snake drafts.
 * **Weekly Automated GM:** Pulls live NFL data to recommend mathematically optimal waiver wire additions and starting lineups.
@@ -16,7 +16,7 @@ It is built as a highly decoupled, full-stack **Monorepo** to ensure the mathema
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack (To be completed later)
 
 * **Core Engine:** Python, Pandas, PuLP (Linear Programming), Scikit-Learn/XGBoost
 * **Backend API:** FastAPI
